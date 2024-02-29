@@ -12,8 +12,13 @@ The screen module, screen.py, handles the graphical aspects of the PONG game.
   and handles scoring and game-end conditions.
 - Additionally, there is a reset_game function to reset the game state after a goal is scored.
 """
+# Инициализация Mixer для воспроизведения музыки(Initialize Mixer for playing music)
+pygame.mixer.init()
 
-
+# Загрузка музыки из папки с проектом(Loading music from project's folder)
+goal = pygame.mixer.Sound("goal.mp3")
+bounce = pygame.mixer.Sound("338952-Ping_pong_or_table_tennis_-bat_hitting_a_ball_8.wav")
+boundaries = pygame.mixer.Sound("10060-Plink-14.wav")
 
 # Цветовая гамма(Colors)
 WHITE = (255, 255, 255)
@@ -40,19 +45,29 @@ def update_objects():
 
     # Отскок от верхней и нижней границ(Bounce off top and bottom boundaries)
     if BALL.top <= 0 or BALL.bottom >= HEIGHT:
+        # Запуск функции play для воспроизведения звука(Launch play function for sound's playing)
+        boundaries.play()
         ball_speed_y = -ball_speed_y
 
     # Отскок от ракеток(Bounce off rackets)
     if BALL.colliderect(PLAYER1):
+        # Запуск функции play для воспроизведения звука(Launch play function for sound's playing)
+        bounce.play()
         ball_speed_x = -ball_speed_x
     elif BALL.colliderect(PLAYER2):
-        ball_speed_x = -ball_speed_x
+        # Запуск функции play для воспроизведения звука(Launch play function for sound's playing)
+        bounce.play()
+        ball_speed_x = -ball_speed_x + 3
 
     # Проверка забития гола(Check for goals)
     if BALL.left <= 0:
+        # Запуск функции play для воспроизведения звука(Launch play function for sound's playing)
+        goal.play()
         score_p2 = score_p2+1
         reset_game()
     elif BALL.right >= WIDTH:
+        # Запуск функции play для воспроизведения звука(Launch play function for sound's playing)
+        goal.play()
         score_p1 += 1
         reset_game()
 

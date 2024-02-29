@@ -21,8 +21,19 @@ This is the main script, Main.py, responsible for running the PONG game.
 
 
 
-# Инициализация Pygame(Initialize pygame)
+# Инициализацwsия Pygame(Initialize pygame)
 pygame.init()
+# Инициализация Mixer для воспроизведения музыки(Initialize Mixer for playing music)
+pygame.mixer.init()
+
+# Загрузка музыки из папки с проектом(Loading music from project's folder)
+pygame.mixer.music.load('Haddaway_-_What_Is_Love_48045121.mp3')
+
+# Настройка громкости звука(Settings sound's volume)
+pygame.mixer.music.set_volume(0.4)
+
+# Цикл для повтора музыки(Loop for music's repeat)
+pygame.mixer.music.play(-1)
 
 try:
     # Создание окна(Create the window)
@@ -42,14 +53,14 @@ try:
         # Скорость управление игроками(Player control handling)
         keys = pygame.key.get_pressed()
         if keys[pygame.K_UP]:
-            move_player1(-10)
+            move_player1(-15)
         if keys[pygame.K_DOWN]:
-            move_player1(10)
+            move_player1(15)
 
         if keys[pygame.K_w]:
-            move_player2(-10)
+            move_player2(-15)
         if keys[pygame.K_s]:
-            move_player2(10)
+            move_player2(15)
 
         update_objects()
 

@@ -22,7 +22,7 @@ WIDTH, HEIGHT = 1280, 720
 PLAYER_WIDTH, PLAYER_HEIGHT = 20, 150
 BALL_SIZE = 20
 FPS = 60
-SCORE_LIMIT = 5
+SCORE_LIMIT = 10
 
 # Скорости мяча(Ball speeds)
 ball_speed_x = random.choice([-8, 8])
